@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const SearchBar = ({ searchTerm, onSearchTermChange, onSubmit }) => {
   return (
     <View style={styles.container}>
-      <Feather style={styles.icon} name='search' />
+      <Feather onPress={onSubmit} style={styles.icon} name='search' />
       <TextInput
         onEndEditing={onSubmit}
         autoCapitalize='none'
@@ -15,6 +16,13 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onSubmit }) => {
         value={searchTerm}
         onChangeText={onSearchTermChange}
       />
+      {searchTerm.length ? (
+        <AntDesign
+          onPress={() => onSearchTermChange('')}
+          style={styles.icon}
+          name='closecircle'
+        />
+      ) : null}
     </View>
   );
 };

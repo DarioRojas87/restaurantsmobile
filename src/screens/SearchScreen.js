@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultsList from '../components/ResultsList';
@@ -13,8 +13,17 @@ const SearchScreen = () => {
       return result.price === price;
     });
   };
+  if (!results.length)
+    return (
+      <>
+        <Image
+          style={styles.image}
+          source={require('../../assets/splash-screen.png')}
+        />
+      </>
+    );
   return (
-    <>
+    <View style={styles.container}>
       <SearchBar
         searchTerm={searchTerm}
         onSearchTermChange={setSearchTerm}
@@ -37,9 +46,15 @@ const SearchScreen = () => {
           results={filterResultsByPrice('$$$')}
         />
       </ScrollView>
-    </>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: 'rgb(252, 220, 223)' },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+});
 export default SearchScreen;

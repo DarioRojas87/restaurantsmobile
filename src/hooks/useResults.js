@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import yelp from '../api/yelp';
 
 export default () => {
@@ -6,6 +6,7 @@ export default () => {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const searchApi = async (searchTerm) => {
+    if (!searchTerm.length) return null;
     try {
       const response = await yelp.get('/search', {
         params: {
@@ -16,7 +17,6 @@ export default () => {
       });
       setResults(response.data.businesses);
     } catch (err) {
-      console.log('entra a catch');
       setErrorMessage(true);
     }
   };

@@ -22,9 +22,10 @@ const ResultsList = ({ title, results }) => {
         horizontal
         data={results}
         keyExtractor={(result) => result.id}
-        renderItem={({ item }) => {
+        renderItem={({ item, index }) => {
           return (
             <TouchableOpacity
+              style={index === 0 ? { marginLeft: 16 } : null}
               onPress={() =>
                 navigation.navigate('ResultsShow', { id: item.id })
               }
