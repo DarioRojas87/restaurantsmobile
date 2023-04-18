@@ -51,7 +51,11 @@ const SearchScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'rgb(252, 220, 223)' },
+  container: {
+    flex: 1,
+    backgroundColor: 'rgb(252, 220, 223)',
+    paddingBottom: 32,
+  },
   image: {
     width: '100%',
     height: '100%',
